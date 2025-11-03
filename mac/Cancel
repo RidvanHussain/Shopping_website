@@ -1,0 +1,6 @@
+rm .gitignore.swp
+
+nano .gitignore
+
+
+
