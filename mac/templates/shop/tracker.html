@@ -1,0 +1,13 @@
+{% extends "shop/basic.html" %}
+
+{% block title %}Order Tracker{% endblock  %}
+
+{% block body %}
+<h1>Track Your Order</h1>
+<p>Enter your order ID to see the status of your order.</p>
+<form id="order-tracker-form">
+  <input type="text" id="order-id" placeholder="Order ID" required>
+  <button type="submit">Track Order</button>
+</form>
+<div id="order-status"></div>
+{% endblock %}

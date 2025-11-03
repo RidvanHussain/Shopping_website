@@ -1,0 +1,23 @@
+{% extends "shop/basic.html" %}
+{% block title %} Sign In {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+  <h2 class="text-center mb-4">Sign In</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label>Username</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <button class="btn btn-primary w-100">Login</button>
+  </form>
+  <p class="text-center mt-3">New user? 
+    <a href="{% url 'Signup' %}">Create Account</a>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "shop/basic.html" %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+  <h2 class="mb-4 text-center">Checkout</h2>
+
+  <div class="row">
+    <!-- 🛒 Cart Summary -->
+    <div class="col-md-7">
+      <h4>Your Cart</h4>
+      <ul id="cart-items" class="list-group mb-3"></ul>
+      <h5 class="mt-3">Total: ₹<span id="cart-total">0</span></h5>
+    </div>
+
+    <!-- 🚚 Shipping Form -->
+    <div class="col-md-5">
+      <h4>Shipping Details</h4>
+      <form id="checkout-form" method="POST">
+        {% csrf_token %}
+        <!-- Hidden field for cart JSON -->
+        <input type="hidden" name="items_json" id="items_json">
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" id="address" name="address" rows="2" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🎉 Thank You Message -->
+  {% if thank %}
+  <div class="alert alert-success mt-4 text-center">
+    🎉 Thank you for your order! Your order ID is <strong>#{{ id }}</strong>.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}
+<!-- Cart system -->
+<script src="{% static 'shop/jsFiles/basic_js.js' %}"></script>
+<!-- Checkout page logic -->
+<script src="{% static 'shop/jsFiles/checkout.js' %}"></script>
+{% endblock %}
